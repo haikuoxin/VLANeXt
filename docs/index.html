@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VLANeXt: Recipes for Building Strong VLA Models">
+  <meta name="keywords" content="VLA, Robotics, Vision-Language-Action">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VLANeXt: Recipes for Building Strong VLA Models</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">VLANeXt: Recipes for Building Strong VLA Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Xiao-Ming Wu, Bin Fan, Kang Liao, Jian-Jian Jiang, Runze Yang, Yihang Luo, Zhonghua Wu, Wei-Shi Zheng, Chen Change Loy*
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/..." class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <img src="../imgs/roadmap_with_framework.png" alt="roadmap of vlanext" style="width: 100%;" />
+          <p>
+            VLANeXt provides recipes for building strong Vision-Language-Action (VLA) models. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Real World Video Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Real World Demos</h2>
+    <div class="content has-text-centered">
+      <p>Our large-scale pretraining checkpoint and our real world demos are coming soon!!!</p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="content">
+          <video id="real-world-1" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/real_world_1.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">clean table (single arm)</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+          <video id="real-world-2" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/real_world_2.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">open drawer and place object (single arm)</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+          <video id="real-world-3" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/real_world_3.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">bimanual clean table (bimanual arms)</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+          <video id="real-world-4" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/real_world_4.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">lifting (bimanual arms)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Libero Benchmark Video Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Libero Benchmark Demos</h2>
+    <div class="columns is-centered">
+      <div class="column best-method">
+        <div class="content">
+          <video id="libero-1" autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/libero_1.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">pick up the black bowl between the plate and the ramekin and place it on the plate</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="libero-2" autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/libero_2.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">pick up the tomato sauce and place it in the basket</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="libero-3" autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/libero_3.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">open the middle drawer of the cabinet</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="libero-4" autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/libero_4.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">put both the alphabet soup and the tomato sauce in the basket</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Libero-Plus Benchmark Video Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Libero-Plus Benchmark Demos</h2>
+     <div class="content has-text-justified">
+      <p class="has-text-centered"><strong>Task Instruction:</strong> pick up the black bowl next to the plate and place it on the plate</p>
+    </div>
+    <!-- Row 1: 4 videos -->
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="content">
+          <video id="libero-plus-1" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_1.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">background perturbation</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+           <video id="libero-plus-2" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_2.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">camera perturbation</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+           <video id="libero-plus-3" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_3.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">language perturbation</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+           <video id="libero-plus-4" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_4.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">layout perturbation</p>
+        </div>
+      </div>
+    </div>
+    <!-- Row 2: 3 videos -->
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="content">
+          <video id="libero-plus-5" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_5.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">light perturbation</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+           <video id="libero-plus-6" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_6.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">noise perturbation</p>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="content">
+           <video id="libero-plus-7" autoplay controls muted loop playsinline width="100%">
+             <source src="./static/videos/libero_plus_7.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-7 has-text-centered">robot perturbation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{}</code></pre>
+  </div>
+</section>
+
+<script src="index.js"></script>
+</body>
+</html>

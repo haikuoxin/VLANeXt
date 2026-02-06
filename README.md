@@ -1,7 +1,7 @@
 # VLANeXt: Recipes for Building Strong VLA Models
 
 [![arXiv](https://img.shields.io/badge/arXiv-2602.xxxxx-b31b1b.svg)](<LINK>)
-[![Project Page](https://img.shields.io/badge/Project-Page-green)](<LINK>)
+[![Project Page](https://img.shields.io/badge/Project-Page-green)]([<LINK>](https://dravenalg.github.io/VLANeXt))
 
 <img src="imgs/roadmap_with_framework.png" alt="roadmap of vlanext" style="zoom:50%;" />
 

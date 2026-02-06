@@ -6,10 +6,5 @@ Official implement of VLANeXt | [Paper]() | [Personal Homepage](https://dravenal
 
 If you have any questions, feel free to contact me by xiaoming.wu@ntu.edu.sg.
 
-## Abstract
+<img src="imgs/roadmap_with_framework.png" alt="roadmap of vlanext" style="zoom:50%;" />
 
- Following the rise of large foundation models, Vision–Language–Action models (VLAs) emerged, leveraging strong visual and language understanding for general-purpose policy learning. Yet, the current VLA landscape remains fragmented and exploratory. Although many groups have proposed their own VLA models, inconsistencies in training protocols and evaluation settings make it difficult to identify which design choices truly matter. To bring structure to this evolving space, we reexamine the VLA design space under a unified framework and evaluation setup. Starting from a simple VLA baseline similar to RT-2 and OpenVLA, we systematically dissect design choices along three dimensions: foundational components, perception essentials, and action modelling perspectives. From this study, we distill 12 key findings that together form a practical recipe for building strong VLA models. The outcome of this exploration is a simple yet effective model, VLANeXt. VLANeXt outperforms prior state-of-the-art methods on the LIBERO and LIBERO-plus benchmarks and demonstrates strong generalization in real-world experiments. We will release a unified, easy-to-use codebase that serves as a common platform for the community to reproduce our findings, explore the design space, and build new VLA variants on top of a shared foundation.
-
-## Overall
-
-<img src="imgs/roadmap.pdf" alt="roadmap of vlanext" style="zoom:50%;" />

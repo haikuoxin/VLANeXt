@@ -10,7 +10,7 @@
 This is a PyTorch implementation of the paper: [VLANeXt: Recipes for Building Strong VLA Models](), and also a **unified**, **easy-to-use** codebase that standardizes training and evaluation while exposing the key components of the VLA design space. It is intentionally lightweight and minimally encapsulated, enabling researchers to reproduce results, probe alternative design choices, and build new VLA variants on a shared, transparent foundation.
 
 <p align="center">
-<img src="imgs/VLANeXt_codebase.png" alt="framework overview" width="85%"/>
+<img src="imgs/VLANeXt_codebase.png" alt="codebase overview" width="80%"/>
 </p>
 
 **Xiao-Ming Wu**, Bin Fan, Kang Liao, Jian-Jian Jiang, Runze Yang, Yihang Luo, Zhonghua Wu, Wei-Shi Zheng, Chen Change Loy*.
@@ -20,6 +20,11 @@ If you have any questions, feel free to contact me by xiaoming.wu@ntu.edu.sg.
 ## Installation
 
 ## Train
+<p align="center">
+<img src="imgs/framework.png" alt="framework of vlanext" width="80%"/>
+</p>
+
+Our final version of VLANeXt can be trained using config
 
 ## Evaluation
 

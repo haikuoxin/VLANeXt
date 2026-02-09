@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             source.src = source.dataset.src;
             source.removeAttribute('data-src');
         });
+        video.preload = 'auto';
         video.load();
         video.play().catch(error => {
             console.log("Autoplay was prevented:", error);
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     obs.unobserve(entry.target);
                 }
             });
-        }, { rootMargin: '200px' });
+        }, { rootMargin: '1500px' });
 
         deferredVideos.forEach(video => observer.observe(video));
     } else {

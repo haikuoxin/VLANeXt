@@ -79,7 +79,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We explore several recipes for building strong VLA models. Following the rise of large foundation models, Vision–Language–Action models (VLAs) emerged, leveraging strong visual and language understanding for general-purpose policy learning. Yet, the current VLA landscape remains fragmented and exploratory. Although many groups have proposed their own VLA models, inconsistencies in training protocols and evaluation settings make it difficult to identify which design choices truly matter. To bring structure to this evolving space, we reexamine the VLA design space under a unified framework and evaluation setup. Starting from a simple VLA baseline similar to RT-2 and OpenVLA, we systematically dissect design choices along three dimensions: foundational components, perception essentials, and action modelling perspectives. From this study, we distill 12 key findings that together form a practical recipe for building strong VLA models. The outcome of this exploration is a simple yet effective model, VLANeXt. VLANeXt outperforms prior state-of-the-art methods on the LIBERO and LIBERO-plus benchmarks and demonstrates strong generalization in real-world experiments. We will release a unified, easy-to-use codebase that serves as a common platform for the community to reproduce our findings, explore the design space, and build new VLA variants on top of a shared foundation.
+            Following the rise of large foundation models, Vision–Language–Action models (VLAs) emerged, leveraging strong visual and language understanding for general-purpose policy learning. Yet, the current VLA landscape remains fragmented and exploratory. Although many groups have proposed their own VLA models, inconsistencies in training protocols and evaluation settings make it difficult to identify which design choices truly matter. To bring structure to this evolving space, we reexamine the VLA design space under a unified framework and evaluation setup. Starting from a simple VLA baseline similar to RT-2 and OpenVLA, we systematically dissect design choices along three dimensions: foundational components, perception essentials, and action modelling perspectives. From this study, we distill 12 key findings that together form a practical recipe for building strong VLA models. The outcome of this exploration is a simple yet effective model, VLANeXt. VLANeXt outperforms prior state-of-the-art methods on the LIBERO and LIBERO-plus benchmarks and demonstrates strong generalization in real-world experiments. We will release a unified, easy-to-use codebase that serves as a common platform for the community to reproduce our findings, explore the design space, and build new VLA variants on top of a shared foundation.
           </p>
         </div>
       </div>
@@ -90,10 +90,11 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method Overall</h2>
         <div class="content has-text-centered">
-          <p>The final VLANeXt framework after exploring is as follows.</p>
+          <p>We explore several recipes for building strong VLA models.</p>
           <img src="./static/images/roadmap.png" width="75%" alt="roadmap"/>
           <br>
           <br>
+          <p>The final VLANeXt framework after exploring is as follows.</p>
           <img src="./static/images/framework.png" width="100%" alt="framework"/>
         </div>
       </div>
@@ -106,36 +107,52 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Real World Demos</h2>
     <div class="columns is-centered is-multiline">
-      <div class="column is-6">
+      <div class="column is-3">
         <div class="content">
-          <video id="real-world-1" autoplay controls muted loop playsinline width="45%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
+          <video id="real-world-1" autoplay controls muted loop playsinline width="100%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
              <source data-src="./static/videos/real_world_1.mp4" type="video/mp4">
           </video>
           <p class="is-size-6 has-text-centered">clean table (single arm)</p>
         </div>
       </div>
-      <div class="column is-6">
+      <div class="column is-3">
         <div class="content">
-          <video id="real-world-2" autoplay controls muted loop playsinline width="45%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
+          <video id="real-world-2" autoplay controls muted loop playsinline width="100%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
              <source data-src="./static/videos/real_world_2.mp4" type="video/mp4">
           </video>
           <p class="is-size-6 has-text-centered">open drawer and place object (single arm)</p>
         </div>
       </div>
-      <div class="column is-6">
+      <div class="column is-3">
         <div class="content">
-          <video id="real-world-3" autoplay controls muted loop playsinline width="90%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
+          <video id="real-world-3" autoplay controls muted loop playsinline width="100%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
              <source data-src="./static/videos/real_world_3.mp4" type="video/mp4">
           </video>
           <p class="is-size-6 has-text-centered">bimanual clean table (bimanual arms)</p>
         </div>
       </div>
-      <div class="column is-6">
+      <div class="column is-3">
         <div class="content">
-          <video id="real-world-4" autoplay controls muted loop playsinline width="90%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
+          <video id="real-world-4" autoplay controls muted loop playsinline width="100%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
              <source data-src="./static/videos/real_world_4.mp4" type="video/mp4">
           </video>
           <p class="is-size-6 has-text-centered">lifting (bimanual arms)</p>
+        </div>
+      </div>
+      <div class="column is-6">
+        <div class="content">
+          <video id="real-world-5" autoplay controls muted loop playsinline width="100%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
+             <source data-src="./static/videos/real_world_5.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-6 has-text-centered">Task 5</p>
+        </div>
+      </div>
+      <div class="column is-6">
+        <div class="content">
+          <video id="real-world-6" autoplay controls muted loop playsinline width="100%" style="border-radius: 5px; border: none; display: block; margin: 0 auto;">
+             <source data-src="./static/videos/real_world_6.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-6 has-text-centered">Task 6</p>
         </div>
       </div>
     </div>

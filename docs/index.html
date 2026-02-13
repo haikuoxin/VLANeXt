@@ -95,7 +95,7 @@
           <p>
             Following the rise of large foundation models, Vision–Language–Action models (VLAs) emerged, leveraging strong visual and language understanding for general-purpose policy learning. Yet, the current VLA landscape remains fragmented and exploratory. Although many groups have proposed their own VLA models, inconsistencies in training protocols and evaluation settings make it difficult to identify which design choices truly matter. To bring structure to this evolving space, we reexamine the VLA design space under a unified framework and evaluation setup. Starting from a simple VLA baseline similar to RT-2 and OpenVLA, we systematically dissect design choices along three dimensions: foundational components, perception essentials, and action modelling perspectives. From this study, we distill 12 key findings that together form a practical recipe for building strong VLA models. The outcome of this exploration is a simple yet effective model, VLANeXt. VLANeXt outperforms prior state-of-the-art methods on the LIBERO and LIBERO-plus benchmarks and demonstrates strong generalization in real-world experiments. We will release a unified, easy-to-use codebase that serves as a common platform for the community to reproduce our findings, explore the design space, and build new VLA variants on top of a shared foundation. 
             <br><br>
-            ATTENTION: We also release a curated and continuously updated list of VLA research to help better understand the development of VLAs.
+            ATTENTION: We also release a curated and continuously updated list of VLA research to help better understand the development of VLAs. See <a href="https://github.com/DravenALG/awesome-vla">Awesome VLA</a>.
           </p>
         </div>
       </div>
@@ -124,7 +124,7 @@
         <h2 class="title is-3">Recipes Exploration Results</h2>
         <div class="content has-text-centered">
           <p class="has-text-left">
-            We conduct extensive ablations across 12 design axes, covering <strong>foundational components</strong>, <strong>perception essentials</strong>, and <strong>action modelling</strong>. The table below summarizes each finding with its recommended configuration, serving as a step-by-step recipe for practitioners.
+            We conduct extensive ablations across 12 design spaces. The table below summarizes each finding with the variants in each space, serving as a complehensive recipe for practitioners.
           </p>
           <img src="./static/images/recipies_table.png" width="100%" alt="recipes table"/>
         </div>
@@ -136,7 +136,7 @@
         <h2 class="title is-3">LIBERO Benchmark Results</h2>
         <div class="content has-text-centered">
           <p class="has-text-left">
-          VLANeXt achieves state-of-the-art performance across all four LIBERO benchmark suites (Spatial, Object, Goal, and Long). It consistently outperforms strong baselines including OpenVLA, OpenVLA-OFT, and π₀, demonstrating its versatility across diverse manipulation scenarios with varying task complexity.
+          VLANeXt achieves state-of-the-art performance. It consistently outperforms strong baselines including OpenVLA-OFT, and π₀, demonstrating its versatility across diverse manipulation scenarios with varying task complexity.
           </p>
           <img src="./static/images/libero_table.png" width="50%" alt="LIBERO benchmark table"/>
         </div>
@@ -148,7 +148,7 @@
         <h2 class="title is-3">LIBERO-Plus Benchmark Results</h2>
         <div class="content has-text-centered">
           <p class="has-text-left">
-            LIBERO-Plus introduces seven categories of systematic perturbations, background, camera, language, layout, lighting, noise, and robot changes, to stress-test policy robustness. VLANeXt maintains consistently high success rates across all perturbation types, while competing methods exhibit significant performance degradation, validating the robustness of our design choices.
+            LIBERO-Plus introduces seven categories of systematic perturbations, background, camera, language, layout, lighting, noise, and robot changes, to stress-test policy robustness. VLANeXt maintains consistently high success rates across all perturbation types, while competing methods exhibit performance degradation, validating the robustness of our design choices.
           </p>
           <img src="./static/images/libero_plus_table.png" width="100%" alt="LIBERO-Plus benchmark table"/>
         </div>
@@ -163,7 +163,7 @@
     <h2 class="title is-3 has-text-centered">Real World Demos</h2>
     <div class="content has-text-left">
       <p>
-        We deploy VLANeXt on physical robot platforms to validate real-world transferability. The model successfully executes a variety of everyday manipulation tasks, including table cleaning, drawer manipulation and lifting, on both single-arm and bimanual setups, demonstrating reliable sim-to-real transfer.
+        We deploy VLANeXt on physical robot platforms to validate real-world transferability. The model successfully executes a variety of everyday manipulation tasks, including table cleaning, drawer manipulation and lifting, on both single-arm and bimanual setups, demonstrating reliable performance.
       </p>
     </div>
     <div class="columns is-centered is-multiline">
@@ -271,7 +271,7 @@
     <h2 class="title is-3 has-text-centered">Libero-Plus Benchmark Demos</h2>
      <div class="content has-text-left">
       <p>
-        These rollouts demonstrate VLANeXt's robustness on LIBERO-Plus, where the model must complete the task <strong>"pick up the black bowl next to the plate and place it on the plate"</strong> under seven distinct perturbation categories. Despite significant environmental changes, the model maintains stable and accurate manipulation.
+        Qualitative rollouts from LIBERO-Plus demonstrate VLANeXt's robustness, where the model complete the task <strong>"pick up the black bowl next to the plate and place it on the plate"</strong> under seven distinct perturbation categories. Despite significant environmental changes, the model maintains stable and accurate manipulation.
       </p>
     </div>
     <!-- Row 1: 4 videos -->

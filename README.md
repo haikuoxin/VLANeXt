@@ -10,13 +10,17 @@
 
 This is a PyTorch implementation of the paper: [VLANeXt: Recipes for Building Strong VLA Models](), and also a **unified**, **easy-to-use** codebase that standardizes training and evaluation while exposing the key components of the VLA design space. It is intentionally lightweight and minimally encapsulated, enabling researchers to reproduce results, probe alternative design choices, and build new VLA variants on a shared, transparent foundation. We also release a [curated and continuously updated list of VLA research](https://github.com/DravenALG/awesome-vla) (Awesome VLA) to help better understand the development of VLAs.
 
+<!-- **Xiao-Ming Wu**, Bin Fan, Kang Liao, Jian-Jian Jiang, Runze Yang, Yihang Luo, Zhonghua Wu, Wei-Shi Zheng, Chen Change Loy*. -->
+
 <p align="center">
 <img src="imgs/VLANeXt_codebase.png" alt="codebase overview" width="80%"/>
 </p>
 
-**Xiao-Ming Wu**, Bin Fan, Kang Liao, Jian-Jian Jiang, Runze Yang, Yihang Luo, Zhonghua Wu, Wei-Shi Zheng, Chen Change Loy*.
+We'll keep updating this repo with new features. Welcome to join us by:
+1. **Build your own VLAs on our VLANeXt codebase**. We will keep your models alongside VLANeXt and RT-2 baseline in our repo for others to use.
+2. **Add your VLMs, diffusion algorithms or other general strategies in our VLANeXt codebase**, to enrich the design space of VLANeXt, and test your general strategies in the robotics domain.
 
-If you have any questions, feel free to contact me by xiaoming.wu@ntu.edu.sg.
+Let's build the future of VLAs together! If you have any questions, feel free to contact me by xiaoming.wu@ntu.edu.sg.
 
 
 ## 🛠️ Environment Setup
@@ -74,10 +78,10 @@ gsutil -m rsync -r gs://gresearch/robotics/droid/1.0.1 droid/1.0.1/
 **Run Training**:
 ```bash
 # Single GPU
-CUDA_VISIBLE_DEVICES=7 python -m scripts.train --config config/droid_train_config.yaml
+CUDA_VISIBLE_DEVICES=6 python -m scripts.train --config config/droid_train_config.yaml
 
 # Multi-GPU (Set distributed=true in config)
-CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 --master_port=29505 -m scripts.train --config config/droid_train_config.yaml
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --master_port=29505 -m scripts.train --config config/droid_train_config.yaml
 ```
 
 ### LIBERO Dataset
@@ -89,7 +93,7 @@ hf download openvla/modified_libero_rlds --repo-type dataset --local-dir LIBERO_
 **Run Training**:
 ```bash
 # Single GPU
-CUDA_VISIBLE_DEVICES=5 python -m scripts.train --config config/libero_train_config.yaml
+CUDA_VISIBLE_DEVICES=6 python -m scripts.train --config config/libero_train_config.yaml
 
 # Multi-GPU (Set distributed=true in config)
 CUDA_VISIBLE_DEVICES=6,7 torchrun --nproc_per_node=2 --master_port=29505 -m scripts.train --config config/libero_train_config.yaml
@@ -100,17 +104,23 @@ CUDA_VISIBLE_DEVICES=6,7 torchrun --nproc_per_node=2 --master_port=29505 -m scri
 ### LIBERO
 ```bash
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt/third_party/LIBERO
+export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO
 
-CUDA_VISIBLE_DEVICES=4 MUJOCO_EGL_DEVICE_ID=4 python -m scripts.libero_bench_eval
+unset PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXt-Dev/third_party/LIBERO
+
+CUDA_VISIBLE_DEVICES=7 MUJOCO_EGL_DEVICE_ID=7 python -m scripts.libero_bench_eval
 ```
 
 ### LIBERO-plus
 ```bash
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt/third_party/LIBERO-plus
+export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO-plus
 
-CUDA_VISIBLE_DEVICES=5 MUJOCO_EGL_DEVICE_ID=5 python -m scripts.libero_plus_bench_eval
+unset PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXt-Dev/third_party/LIBERO-plus
+
+CUDA_VISIBLE_DEVICES=7 MUJOCO_EGL_DEVICE_ID=7 python -m scripts.libero_plus_bench_eval
 ```
 
 ## ⚡ Analysis
@@ -118,8 +128,11 @@ CUDA_VISIBLE_DEVICES=5 MUJOCO_EGL_DEVICE_ID=5 python -m scripts.libero_plus_benc
 Set `CHECKPOINT_PATH` and `INPUT_MODALITY` in `scripts/size_speed_eval.py`.
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python -m scripts.size_speed_eval
+CUDA_VISIBLE_DEVICES=5 python -m scripts.size_speed_eval
 ```
+
+## ❗ Common Issues
+If you run into issues, check [COMMON_ISSUES.md](COMMON_ISSUES.md) for known problems and solutions.
 
 ## 📚 Citation
 

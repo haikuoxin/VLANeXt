@@ -22,7 +22,7 @@ model:
 - **`model_type: "rt2_baseline"`** instantiates the `RT2LikeBaseline` class (`src/models/rt2_like_baseline.py`). Actions are predicted by reusing the least frequently used text tokens in the LLM vocabulary as discrete action bins, similar to the RT-2 approach.
 
 #### How to Extend
-Add a new model class (e.g., `MyCustomPolicy`) in `src/models/`, then add a new branch in `train.py`'s `train()` function under the `model_type` check.
+Add a new model class (e.g., `MyCustomPolicy`) in `src/models/`, add a new branch in `train.py`'s `train()` function under the `model_type` check, and update `get_vla()` in `src/evaluation/libero_bench/VLANeXt_utils.py` to instantiate the new model during evaluation.
 
 <p align="center">
 <img src="imgs/policy_type.png" alt="policy type" width="55%"/>
@@ -92,7 +92,7 @@ model:
 - **`"classification"`**: When `action_vqvae` is disable, discretizes each action dimension into `num_bins` bins and applies cross-entropy loss. Alternatively, enable `action_vqvae` to first learn a VQ-VAE codebook over action sequences, then classify into codebook indices. When VQ-VAE is enabled, a pretraining phase runs before main training (controlled by `action_vqvae.steps`).
 
 #### How to Extend
-To add a completely new loss type, implement a `_forward_<loss_name>` method in `VLANeXt` and add new policy classes in `src/models/policies.py` (we seperately implement different policies for each loss, e.g., diffusion policies, regression policies, classification policies). You should also handle `predict_action` method in `VLANeXt`.
+To add a completely new loss type, implement a `_forward_<loss_name>` method in `VLANeXt` and add new policy classes in `src/models/policies.py` (we seperately implement different policies for each loss, e.g., diffusion policies, regression policies, classification policies). You should also update the `predict_action` method in `VLANeXt.py` to handle inference for the new loss type, and ensure `get_vlanext_action` in `src/evaluation/libero_bench/VLANeXt_utils.py` correctly processes the output.
 
 <p align="center">
 <img src="imgs/loss.png" alt="loss choices" width="48%"/>
@@ -127,7 +127,7 @@ The `VLANeXt.__init__()` method detects the model family from the `lmm_path` str
 - **`backbone_mode: "frozen"`** freezes the VLM weights; `"finetune"` keeps them trainable.
 
 #### How to Extend
-To add a new VLM family, add a new `elif` branch in `VLANeXt.__init__()` for loading the model and processor, implement a `_get_vlm_condition_<family>()` method for extracting hidden states, and update the `DataCollatorForVLANeXt` in `train.py` to handle the new processor format.
+To add a new VLM family, add a new `elif` branch in `VLANeXt.__init__()` for loading the model and processor, implement a `_get_vlm_condition_<family>()` method, update `DataCollatorForVLANeXt` in `train.py`, and modify `get_processor` and `get_vlanext_action` in `src/evaluation/libero_bench/VLANeXt_utils.py` to handle the new VLM's processing logic during evaluation.
 
 
 <p align="center">
@@ -160,7 +160,7 @@ model:
 - **`"soft"`** *(VLANeXt default)*: Combines both approaches — appends `num_queries` learnable meta-queries to the VLM input (like "loose"), **and** passes all VLM hidden states layer-by-layer to the policy (like "tight"). This provides both a dedicated latent buffer and rich per-layer features. Uses `MoEBlock`-based policy Transformers.
 
 #### How to Extend
-To add a new connection type, implement the conditioning logic in all the `_get_vlm_condition_[VLMname]()` methods to get revalant conditioning information from VLM, and add corresponding branches in `_forward_diffusion()`, `_forward_regression()`, and `_forward_classification()` of `VLANeXt`.
+To add a new connection type, implement the conditioning logic in all the `_get_vlm_condition_[VLMname]()` methods to get revalant conditioning information from VLM, and add corresponding branches in `_forward_diffusion()`, `_forward_regression()`, `_forward_classification()`, and `predict_action()` of `VLANeXt` for both training and inference.
 
 <p align="center">
 <img src="imgs/VLM_policy_connection.png" alt="VLM-policy connection" width="68%"/>
@@ -187,7 +187,7 @@ data:
 - **`input_modality: "video"`**: The collator loads `sample["video"]` — a sequence of `history_len` past frames — and passes them as video input.
 
 #### How to Extend
-To add a new temporal strategy (e.g., key-frame sampling), modify the dataset's `__getitem__()` method to return the desired frame selection.
+To add a new temporal strategy (e.g., key-frame sampling), modify `__getitem__()` in the dataset class, and also update the history construction logic in `get_vlanext_action()` in `src/evaluation/libero_bench/VLANeXt_utils.py` to match behavior.
 
 
 <p align="center">
@@ -312,8 +312,6 @@ model:
 - For **regression** loss, the DCT loss is directly computed on the predicted vs. ground-truth actions.
 - For **classification** loss, soft action predictions are obtained from the logit probabilities (expected value over bin centers or VQ-VAE soft decoding), then the DCT loss is applied.
 - The total loss becomes: `loss = primary_loss + dct_loss_weight * dct_loss`.
-
-
 
 <p align="center">
 <img src="imgs/frequency_modelling.png" alt="frequency modelling" width="50%"/>

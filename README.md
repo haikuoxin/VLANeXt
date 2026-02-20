@@ -121,7 +121,7 @@ CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_plus_benc
 Set `CHECKPOINT_PATH` and `INPUT_MODALITY` in `scripts/size_speed_eval.py`.
 
 ```bash
-CUDA_VISIBLE_DEVICES=5 python -m scripts.size_speed_eval
+CUDA_VISIBLE_DEVICES=0 python -m scripts.size_speed_eval
 ```
 
 ## ❗ Common Issues

@@ -1,15 +1,15 @@
 project:
   # [projectname]_[versionname]_[benchmarkname]_[else......]
   name: "VLANeXt_final_droid_bs256_steps100000_qwen3vl2b_lr1e-4_dct0.1"
-  output_dir: "/data/NTU_slab/draven/checkpoints/VLANeXt"
+  output_dir: "/mnt/draven/checkpoints/VLANeXt"
   log_interval: 10
   save_interval: 5000
   use_wandb: true
 
 data:
   dataset_name: "droid"
-  # /data/NTU_slab/draven/data/open_x_embodiment/droid
-  data_root: "/data/NTU_slab/draven/data/open_x_embodiment/droid"
+  # /mnt/draven/data/open_x_embodiment/droid
+  data_root: "/mnt/draven/data/open_x_embodiment/droid"
   # droid, options: (none for now)
   task_suite_name: ""
   full_sequence: true  # If true, sample every timestep; if false, subsample

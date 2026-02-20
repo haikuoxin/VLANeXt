@@ -45,7 +45,7 @@ git clone https://github.com/Lifelong-Robot-Learning/LIBERO.git
 cd LIBERO && pip install .
 ```
 
-**LIBERO-plus** (Separate env recommended)
+**LIBERO-plus** (Separate env needed)
 ```bash
 cd third_party
 git clone https://github.com/sylvestf/LIBERO-plus.git
@@ -78,7 +78,7 @@ gsutil -m rsync -r gs://gresearch/robotics/droid/1.0.1 droid/1.0.1/
 **Run Training**:
 ```bash
 # Single GPU
-CUDA_VISIBLE_DEVICES=6 python -m scripts.train --config config/droid_train_config.yaml
+CUDA_VISIBLE_DEVICES=0 python -m scripts.train --config config/droid_train_config.yaml
 
 # Multi-GPU (Set distributed=true in config)
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --master_port=29505 -m scripts.train --config config/droid_train_config.yaml
@@ -93,10 +93,10 @@ hf download openvla/modified_libero_rlds --repo-type dataset --local-dir LIBERO_
 **Run Training**:
 ```bash
 # Single GPU
-CUDA_VISIBLE_DEVICES=6 python -m scripts.train --config config/libero_train_config.yaml
+CUDA_VISIBLE_DEVICES=0 python -m scripts.train --config config/libero_train_config.yaml
 
 # Multi-GPU (Set distributed=true in config)
-CUDA_VISIBLE_DEVICES=6,7 torchrun --nproc_per_node=2 --master_port=29505 -m scripts.train --config config/libero_train_config.yaml
+CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 --master_port=29506 -m scripts.train --config config/libero_train_config.yaml
 ```
 
 ## 📊 Evaluation
@@ -105,22 +105,14 @@ CUDA_VISIBLE_DEVICES=6,7 torchrun --nproc_per_node=2 --master_port=29505 -m scri
 ```bash
 unset PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO
-
-unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXt-Dev/third_party/LIBERO
-
-CUDA_VISIBLE_DEVICES=7 MUJOCO_EGL_DEVICE_ID=7 python -m scripts.libero_bench_eval
+CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_bench_eval
 ```
 
 ### LIBERO-plus
 ```bash
 unset PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO-plus
-
-unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXt-Dev/third_party/LIBERO-plus
-
-CUDA_VISIBLE_DEVICES=7 MUJOCO_EGL_DEVICE_ID=7 python -m scripts.libero_plus_bench_eval
+CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_plus_bench_eval
 ```
 
 ## ⚡ Analysis

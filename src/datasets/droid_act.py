@@ -80,8 +80,20 @@ class DroidAct(IterableDataset):
         shard_index = rank * num_workers + worker_id
         ds_iterator = droid_ds.shard(num_shards=total_shards, index=shard_index)
 
-        for traj_id, traj_data in enumerate(ds_iterator):
+        ds_iter = iter(ds_iterator)
+        traj_id = -1
+        while True:
             try:
+                try:
+                    traj_data = next(ds_iter)
+                except StopIteration:
+                    break
+                except tf.errors.DataLossError as e:
+                    traj_id += 1
+                    print(f"[Warn] Skipping trajectory {traj_id}: TF DataLossError during iteration: {e}")
+                    continue
+                traj_id += 1
+                
                 traj_batch = next(iter(traj_data['steps'].batch(5000)))
 
                 if traj_batch['reward'][-1].numpy() != 1:

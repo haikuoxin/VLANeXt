@@ -1,6 +1,6 @@
 # VLANeXt: Recipes for Building Strong VLA Models
 
-[![arXiv](https://img.shields.io/badge/arXiv-2602.xxxxx-b31b1b.svg)](<LINK>)
+[![arXiv](https://img.shields.io/badge/arXiv-2602.18532-b31b1b.svg)](https://arxiv.org/abs/2602.18532)
 [![Project Page](https://img.shields.io/badge/Project-Page-green)](https://dravenalg.github.io/VLANeXt)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-yellow)](https://huggingface.co/DravenALG/VLANeXt)
 [![Awesome VLA](https://img.shields.io/badge/GitHub-AwesomeVLA-black)](https://github.com/DravenALG/awesome-vla)
@@ -71,6 +71,8 @@ We provide a tutorial-style guide to configuring the **12 design spaces** from o
 👉 **Please refer to [DESIGN_SPACE.md](DESIGN_SPACE.md) for detailed configuration instructions.**
 
 ### Droid Dataset
+For more details, please refer to the [Droid Dataset](https://droid-dataset.github.io).
+
 **Download**:
 ```bash
 gsutil -m rsync -r gs://gresearch/robotics/droid/1.0.1 droid/1.0.1/ 
@@ -86,6 +88,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --master_port=29505 -m 
 ```
 
 ### LIBERO Dataset
+For more details, please refer to the [OpenVLA](https://github.com/openvla/openvla), which modifies the original dataset in LIBERO for training VLAs.
+
 **Download**:
 ```bash
 hf download openvla/modified_libero_rlds --repo-type dataset --local-dir LIBERO_modified
@@ -101,8 +105,11 @@ CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 --master_port=29506 -m 
 ```
 
 ## 📊 Evaluation
+We have released VLANeXt checkpoints for the four LIBERO or LIBERO-plus suites on [huggingface](https://huggingface.co/DravenALG/VLANeXt). These checkpoints achieve slightly better performance than the results reported in the paper, as the paper reports the average results.
 
 ### LIBERO
+For more details, please refer to the [official repository of LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO).
+
 ```bash
 unset PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO
@@ -110,6 +117,8 @@ CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_bench_eva
 ```
 
 ### LIBERO-plus
+For more details, please refer to the [official repository of LIBERO-plus](https://github.com/sylvestf/LIBERO-plus).
+
 ```bash
 unset PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO-plus
@@ -132,7 +141,11 @@ If you run into issues, check [COMMON_ISSUES.md](COMMON_ISSUES.md) for known pro
 If you find VLANeXt useful for your research or applications, please cite our paper using the following BibTeX:
 
 ```bibtex
-  @article{}
+  @article{wu2026vlanext,
+      title={VLANeXt: Recipes for Building Strong VLA Models}, 
+      author={Xiao-Ming Wu and Bin Fan and Kang Liao and Jian-Jian Jiang and Runze Yang and Yihang Luo and Zhonghua Wu and Wei-Shi Zheng and Chen Change Loy},
+      journal={arXiv preprint arXiv:2602.18532}
+  }
 ```
 
 ## 🗞️ License

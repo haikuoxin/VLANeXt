@@ -250,8 +250,8 @@ if __name__ == "__main__":
     SUITES = [
         # "libero_spatial",
         # "libero_object",
-        # "libero_goal",
-        "libero_10",
+        "libero_goal",
+        # "libero_10",
     ]
     VERSION = "1.0.0"
 

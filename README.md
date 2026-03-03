@@ -119,15 +119,15 @@ CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_bench_eva
 ### LIBERO-plus
 For more details, please refer to the [official repository of LIBERO-plus](https://github.com/sylvestf/LIBERO-plus).
 
-### real-world attempts
-We also released a checkpoint trained on the Droid dataset, which can be finetuned for your real-world experiments with a Franka robotic arm.
-
-
 ```bash
 unset PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO-plus
 CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_plus_bench_eval
 ```
+
+### real-world attempts
+We also released a checkpoint trained on the Droid dataset, which can be finetuned for your real-world experiments with a Franka robotic arm.
+
 
 ## ⚡ Analysis
 **Model Size and Speed**  

@@ -110,7 +110,7 @@ hf download openvla/modified_libero_rlds --repo-type dataset --local-dir LIBERO_
 **Run Training**:
 ```bash
 # Single GPU
-CUDA_VISIBLE_DEVICES=0 python -m scripts.train --config config/libero_train_config.yaml
+CUDA_VISIBLE_DEVICES=5 python -m scripts.train --config config/libero_train_config.yaml
 
 # Multi-GPU (Set distributed=true in config)
 CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 --master_port=29506 -m scripts.train --config config/libero_train_config.yaml
@@ -123,26 +123,26 @@ We have released VLANeXt checkpoints for the four LIBERO or LIBERO-plus suites o
 ```bash
 # in gcloud
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO
+export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXtV2/third_party/LIBERO
 
 # in sensecore
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXt-Dev/third_party/LIBERO
+export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXtV2/third_party/LIBERO
 
-CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_bench_eval
+CUDA_VISIBLE_DEVICES=7 MUJOCO_EGL_DEVICE_ID=7 python -m scripts.libero_bench_eval
 ```
 
 ### LIBERO-plus
 ```bash
 # in gcloud
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO-plus
+export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXtV2/third_party/LIBERO-plus
 
 # in sensecore
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXt-Dev/third_party/LIBERO-plus
+export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXtV2/third_party/LIBERO-plus
 
-CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_plus_bench_eval
+CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 python -m scripts.libero_plus_bench_eval
 ```
 
 

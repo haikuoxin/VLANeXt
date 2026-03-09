@@ -114,6 +114,8 @@ model:
   dct_freq_split: 0.5
   dct_low_freq_weight: 1.0
   dct_high_freq_weight: 3.0
+  # dct similarity type: options: "mse", "mae", "cosine", "lsd"
+  dct_similarity_type: "mse"
 
   # action condition configs
   use_proprio_input_vlm: true

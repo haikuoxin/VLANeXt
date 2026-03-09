@@ -1,6 +1,6 @@
 project:
   # [projectname]_[versionname]_[benchmarkname]_[else......]
-  name: "VLANeXtV2_v0_libero_spatial_high_freq_weight3_split0.25"
+  name: "VLANeXtV2_v0_libero_spatial_dct_lsd_weight0.05"
   output_dir: "/mnt/draven/checkpoints/VLANeXtV2"
   log_interval: 10
   save_interval: 2000
@@ -109,11 +109,13 @@ model:
   future_image_mode: "horizon" # Options: "horizon" for predicting the horizon image; "goal" for predicting the final image
 
   # auxiliary dct loss weight (>0 activates)
-  dct_loss_weight: 0.1
+  dct_loss_weight: 0.05
   # dct frequency weighting: fraction [0,1] of DCT bins treated as low freq
-  dct_freq_split: 0.25
+  dct_freq_split: 0.5
   dct_low_freq_weight: 1.0
-  dct_high_freq_weight: 3.0
+  dct_high_freq_weight: 1.0
+  # dct similarity type: options: "mse", "mae", "cosine", "lsd"
+  dct_similarity_type: "lsd"
 
   # action condition configs
   use_proprio_input_vlm: true

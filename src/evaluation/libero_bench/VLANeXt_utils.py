@@ -96,6 +96,7 @@ def get_vla(cfg):
             dct_low_freq_weight=model_config.get('dct_low_freq_weight', 1.0),
             dct_high_freq_weight=model_config.get('dct_high_freq_weight', 3.0),
             dct_freq_split=model_config.get('dct_freq_split', 0.5),
+            dct_similarity_type=model_config.get('dct_similarity_type', 'mse'),
         )
     
     

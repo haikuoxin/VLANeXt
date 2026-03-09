@@ -78,6 +78,7 @@ class VLANeXt(nn.Module):
         dct_low_freq_weight=1.0,
         dct_high_freq_weight=3.0,
         dct_freq_split=0.5,
+        dct_similarity_type="mse",  # Options: "mse", "mae", "cosine", "lsd"
     ):
         super().__init__()
         
@@ -167,6 +168,7 @@ class VLANeXt(nn.Module):
         self.dct_low_freq_weight = dct_low_freq_weight
         self.dct_high_freq_weight = dct_high_freq_weight
         self.dct_freq_split = dct_freq_split  # fraction of T treated as low frequency (0.0–1.0)
+        self.dct_similarity_type = dct_similarity_type  # Options: "mse", "mae", "cosine", "lsd"
         
         self.action_vqvae_config = action_vqvae
         if self.action_vqvae_config.get('enabled', False):
@@ -580,9 +582,34 @@ class VLANeXt(nn.Module):
         target_dct = torch.matmul(target_perm, self._dct_matrix.t())
         target_dct = target_dct.permute(0, 2, 1)
 
-        # Weighted MSE: weight each frequency bin before averaging
-        diff_sq = (pred_dct - target_dct) ** 2
-        return (diff_sq * freq_weights).mean()
+        # Compute weighted similarity loss based on selected type
+        sim_type = self.dct_similarity_type
+        if sim_type == "mse":
+            # Weighted MSE: weight each frequency bin before averaging
+            diff = (pred_dct - target_dct) ** 2
+            return (diff * freq_weights).mean()
+        elif sim_type == "mae":
+            # Weighted MAE (L1): weight each frequency bin before averaging
+            diff = (pred_dct - target_dct).abs()
+            return (diff * freq_weights).mean()
+        elif sim_type == "cosine":
+            # Weighted cosine distance: 1 - cos(pred_dct, target_dct) per (B, T) pair
+            # pred_dct / target_dct: (B, T, D)
+            pred_norm = torch.nn.functional.normalize(pred_dct, dim=-1)
+            target_norm = torch.nn.functional.normalize(target_dct, dim=-1)
+            cos_sim = (pred_norm * target_norm).sum(dim=-1, keepdim=True)  # (B, T, 1)
+            cos_dist = 1.0 - cos_sim  # (B, T, 1)
+            return (cos_dist * freq_weights).mean()
+        elif sim_type == "lsd":
+            # Log-Spectral Distance: log(|x| + eps) first, then weighted MAE
+            eps = 1e-8
+            log_pred = torch.log(pred_dct.abs() + eps)
+            log_target = torch.log(target_dct.abs() + eps)
+            diff = (log_pred - log_target).abs()
+            return (diff * freq_weights).mean()
+        else:
+            raise ValueError(f"Unknown dct_similarity_type: {sim_type!r}. "
+                             f"Options are: 'mse', 'mae', 'cosine', 'lsd'.")
 
     def forward(self, input_ids=None, attention_mask=None, actions=None, proprioception=None, history_actions=None, proprio_attention_mask=None, pixel_values=None, pixel_values_videos=None, image_grid_thw=None, video_grid_thw=None, future_images=None, task=None):
         if task == "action_vqvae_pretrain":

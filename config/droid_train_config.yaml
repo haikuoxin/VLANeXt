@@ -1,7 +1,7 @@
 project:
   # [projectname]_[versionname]_[benchmarkname]_[else......]
-  name: "VLANeXt_final_droid_bs256_steps100000_qwen3vl2b_lr1e-4"
-  output_dir: "/mnt/draven/checkpoints/VLANeXt"
+  name: "VLANeXtV2_v0_droid_bs256_normal"
+  output_dir: "/mnt/draven/checkpoints/VLANeXtV2"
   log_interval: 10
   save_interval: 5000
   use_wandb: true
@@ -110,6 +110,12 @@ model:
 
   # auxiliary dct loss weight (>0 activates)
   dct_loss_weight: 0.1
+  # dct frequency weighting: fraction [0,1] of DCT bins treated as low freq
+  dct_freq_split: 0.5
+  dct_low_freq_weight: 1.0
+  dct_high_freq_weight: 3.0
+  # dct similarity type: options: "mse", "mae", "cosine", "lsd"
+  dct_similarity_type: "mse"
 
   # action condition configs
   use_proprio_input_vlm: true

@@ -19,7 +19,6 @@ from src.datasets.libero_act import (
     action_min_object, action_max_object,
     action_min_goal, action_max_goal,
     action_min_10, action_max_10,
-    action_min_mixed, action_max_mixed
 )
 
 from src.evaluation.libero_bench.libero_utils import (

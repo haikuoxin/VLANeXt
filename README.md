@@ -58,6 +58,18 @@ conda env config vars set LIBERO_CONFIG_PATH=~/.libero_plus
 ```
 We also need to download the asserts, see [LIBERO-plus](https://github.com/sylvestf/LIBERO-plus).
 
+**RoboTwin 2.0** (Separate env needed)
+```bash
+cd third_party
+git clone https://github.com/RoboTwin-Platform/RoboTwin.git
+cd RoboTwin
+# Dependencies
+pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
+# add "--no-build-isolation" after pytorch3d instiall in "script/_install.sh"
+# install cuda-toolkit "conda install -c nvidia cuda-toolkit" if not installed
+bash script/_install.sh
+```
+
 
 ## 🚀 Training
 Droid dataset is for robotics pretraining (used in our real-world experiments), and libero dataset is for benchmark evaluation (used in our benchmark evaluation). The default training setting is for our final VLANeXt framework.
@@ -98,7 +110,7 @@ hf download openvla/modified_libero_rlds --repo-type dataset --local-dir LIBERO_
 **Run Training**:
 ```bash
 # Single GPU
-CUDA_VISIBLE_DEVICES=0 python -m scripts.train --config config/libero_train_config.yaml
+CUDA_VISIBLE_DEVICES=5 python -m scripts.train --config config/libero_train_config.yaml
 
 # Multi-GPU (Set distributed=true in config)
 CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 --master_port=29506 -m scripts.train --config config/libero_train_config.yaml
@@ -108,21 +120,29 @@ CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 --master_port=29506 -m 
 We have released VLANeXt checkpoints for the four LIBERO or LIBERO-plus suites on [huggingface](https://huggingface.co/DravenALG/VLANeXt). These checkpoints achieve slightly better performance than the results reported in the paper, as the paper reports the average results.
 
 ### LIBERO
-For more details, please refer to the [official repository of LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO).
-
 ```bash
+# in gcloud
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO
-CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_bench_eval
+export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXtV2/third_party/LIBERO
+
+# in sensecore
+unset PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXtV2/third_party/LIBERO
+
+CUDA_VISIBLE_DEVICES=7 MUJOCO_EGL_DEVICE_ID=7 python -m scripts.libero_bench_eval
 ```
 
 ### LIBERO-plus
-For more details, please refer to the [official repository of LIBERO-plus](https://github.com/sylvestf/LIBERO-plus).
-
 ```bash
+# in gcloud
 unset PYTHONPATH
-export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXt-Dev/third_party/LIBERO-plus
-CUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 python -m scripts.libero_plus_bench_eval
+export PYTHONPATH=$PYTHONPATH:~/proj/VLANeXtV2/third_party/LIBERO-plus
+
+# in sensecore
+unset PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:/data/NTU_slab/draven/proj/VLANeXtV2/third_party/LIBERO-plus
+
+CUDA_VISIBLE_DEVICES=2 MUJOCO_EGL_DEVICE_ID=2 python -m scripts.libero_plus_bench_eval
 ```
 
 ### real-world attempts

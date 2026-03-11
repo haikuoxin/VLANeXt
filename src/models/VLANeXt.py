@@ -78,7 +78,7 @@ class VLANeXt(nn.Module):
         dct_low_freq_weight=1.0,
         dct_high_freq_weight=3.0,
         dct_freq_split=0.5,
-        dct_similarity_type="mse",  # Options: "mse", "mae", "cosine", "lsd"
+        dct_similarity_type="mse",  # Options: "mse", "mae", "cosine"
     ):
         super().__init__()
         
@@ -167,8 +167,8 @@ class VLANeXt(nn.Module):
         self.dct_loss_weight = dct_loss_weight
         self.dct_low_freq_weight = dct_low_freq_weight
         self.dct_high_freq_weight = dct_high_freq_weight
-        self.dct_freq_split = dct_freq_split  # fraction of T treated as low frequency (0.0–1.0)
-        self.dct_similarity_type = dct_similarity_type  # Options: "mse", "mae", "cosine", "lsd"
+        self.dct_freq_split = dct_freq_split
+        self.dct_similarity_type = dct_similarity_type
         
         self.action_vqvae_config = action_vqvae
         if self.action_vqvae_config.get('enabled', False):
@@ -592,15 +592,9 @@ class VLANeXt(nn.Module):
             cos_sim = (pred_norm * target_norm).sum(dim=-1, keepdim=True)
             cos_dist = 1.0 - cos_sim
             return (cos_dist * freq_weights).mean()
-        elif sim_type == "lsd":
-            eps = 1e-8
-            log_pred = torch.log(pred_dct.abs() + eps)
-            log_target = torch.log(target_dct.abs() + eps)
-            diff = (log_pred - log_target).abs()
-            return (diff * freq_weights).mean()
         else:
             raise ValueError(f"Unknown dct_similarity_type: {sim_type!r}. "
-                             f"Options are: 'mse', 'mae', 'cosine', 'lsd'.")
+                             f"Options are: 'mse', 'mae', 'cosine'.")
 
     def forward(self, input_ids=None, attention_mask=None, actions=None, proprioception=None, history_actions=None, proprio_attention_mask=None, pixel_values=None, pixel_values_videos=None, image_grid_thw=None, video_grid_thw=None, future_images=None, task=None):
         if task == "action_vqvae_pretrain":

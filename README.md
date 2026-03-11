@@ -58,18 +58,6 @@ conda env config vars set LIBERO_CONFIG_PATH=~/.libero_plus
 ```
 We also need to download the asserts, see [LIBERO-plus](https://github.com/sylvestf/LIBERO-plus).
 
-**RoboTwin 2.0** (Separate env needed)
-```bash
-cd third_party
-git clone https://github.com/RoboTwin-Platform/RoboTwin.git
-cd RoboTwin
-# Dependencies
-pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
-# add "--no-build-isolation" after pytorch3d instiall in "script/_install.sh"
-# install cuda-toolkit "conda install -c nvidia cuda-toolkit" if not installed
-bash script/_install.sh
-```
-
 
 ## 🚀 Training
 Droid dataset is for robotics pretraining (used in our real-world experiments), and libero dataset is for benchmark evaluation (used in our benchmark evaluation). The default training setting is for our final VLANeXt framework.

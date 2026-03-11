@@ -109,13 +109,11 @@ model:
   future_image_mode: "horizon" # Options: "horizon" for predicting the horizon image; "goal" for predicting the final image
 
   # auxiliary dct loss weight (>0 activates)
-  dct_loss_weight: 0.05
-  # dct frequency weighting: fraction [0,1] of DCT bins treated as low freq
-  dct_freq_split: 0.5
+  dct_loss_weight: 0.1
+  dct_freq_split: 0.25
   dct_low_freq_weight: 1.0
   dct_high_freq_weight: 1.0
-  # dct similarity type: options: "mse", "mae", "cosine", "lsd"
-  dct_similarity_type: "lsd"
+  dct_similarity_type: "mae" # Options: "mse", "mae", "cosine", "lsd"
 
   # action condition configs
   use_proprio_input_vlm: true

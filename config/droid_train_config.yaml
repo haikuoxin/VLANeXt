@@ -110,12 +110,10 @@ model:
 
   # auxiliary dct loss weight (>0 activates)
   dct_loss_weight: 0.1
-  # dct frequency weighting: fraction [0,1] of DCT bins treated as low freq
-  dct_freq_split: 0.5
+  dct_freq_split: 0.25
   dct_low_freq_weight: 1.0
-  dct_high_freq_weight: 3.0
-  # dct similarity type: options: "mse", "mae", "cosine", "lsd"
-  dct_similarity_type: "mse"
+  dct_high_freq_weight: 1.0
+  dct_similarity_type: "mae" # Options: "mse", "mae", "cosine", "lsd"
 
   # action condition configs
   use_proprio_input_vlm: true

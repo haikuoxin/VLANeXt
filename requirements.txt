@@ -1,6 +1,6 @@
 # for VLANeXt
 huggingface_hub
-transformers
+transformers>=4.57.3,<5.3.0
 diffusers
 datasets
 accelerator

@@ -11,7 +11,7 @@ license = "S-Lab-1.0"
 requires-python = ">=3.10"
 dependencies = [
     "torch>=2.2",
-    "transformers>=4.40",
+    "transformers>=4.57.3,<5.3.0",
     "diffusers>=0.25",
     "accelerate",
     "pillow>=9.0",
